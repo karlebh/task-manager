@@ -36,7 +36,7 @@
 
 
 
-            @include('layouts.navigation')
+            @include('layouts.task-navigation')
 
             <!-- Page Heading -->
             @isset($header)
