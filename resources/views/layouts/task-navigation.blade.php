@@ -49,7 +49,7 @@
 
                     <x-slot name="content">
                         <a href="#"
-                            class="text-gray-700 hover:text-blue-500 hover:bg-gray-200 rounded-md px-4 py-2 block {{ request()->routeIs('task.dashboard', $user) ? 'bg-blue-100 text-blue-700' : '' }}">
+                            class="text-gray-700 hover:text-blue-500 hover:bg-gray-200 rounded-md px-4 py-2 block">
                             {{ $user->username }}
                         </a>
                         <x-dropdown-link :href="route('task.index', $user)" :active="request()->routeIs('task.index', $user)">
@@ -81,7 +81,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('task.dashboard', $user)" :active="request()->routeIs('task.dashboard', $user)">
+            <x-responsive-nav-link :href="route('task.dashboard', $user)">
                 {{ $user->username }}
             </x-responsive-nav-link>
 

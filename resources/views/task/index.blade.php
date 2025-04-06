@@ -9,12 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg h-full">
                 <div class="p-6 text-gray-900">
+                    <div class="my-2 flex justify-between font-bold text-lg">
+                        <span>Task</span>
+
+                        <span>Time Created</span>
+                    </div>
                     @forelse ($tasks as $task)
-                        <div class="my-2">
-                            <a href="{{ route('task.show', [$user, $task]) }}"
-                                class="hover:underline hover:text-blue-400">
-                                {{ $task->title }}
-                            </a>
+                        <div class="my-2 flex justify-between">
+                            <span> <a href="{{ route('task.show', [$user, $task]) }}"
+                                    class="hover:underline hover:text-blue-400">
+                                    {{ $task->title }}
+                                </a></span>
+
+                            <span>{{ $task->created_at->diffForHumans() }}</span>
                         </div>
                     @empty
                         <div class="my-2">

@@ -26,9 +26,7 @@ class TaskController extends Controller
 
     public function store(CreateTaskRequest $request, User $user)
     {
-        $requestData = $request->validated();
-
-        $task = Task::create(array_merge($requestData, ['user_id' => $user->id]));
+        $task = Task::create(array_merge($request->validated(), ['user_id' => $user->id]));
 
         return redirect()->route('task.show', [$user, $task])->with([
             'user' => $user,
@@ -38,6 +36,10 @@ class TaskController extends Controller
 
     public function show(User $user, Task $task)
     {
+        if ($task->user->id !== $user->id) {
+            return redirect()->route('task.index', $user);
+        }
+
         return view('task.show')->with([
             'task' => $task,
             'user' => $user,
@@ -46,6 +48,10 @@ class TaskController extends Controller
 
     public function edit(User $user, Task $task)
     {
+        if ($task->user->id !== $user->id) {
+            return redirect()->route('task.index', $user);
+        }
+
         return view('task.edit')->with([
             'task' => $task,
             'user' => $user,
@@ -54,9 +60,7 @@ class TaskController extends Controller
 
     public function update(UpdateTaskRequest $request, User $user, Task $task)
     {
-        $requestData = $request->validated();
-
-        $task->update(array_merge($requestData, ['user_id' => auth()->id()]));
+        $task->update(array_merge($request->validated(), ['user_id' => $user->id]));
 
         return redirect()->route('task.show', [$user, $task])->with([
             'task' => $task,
