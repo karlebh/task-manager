@@ -2,7 +2,7 @@
 
 ## Cluster Software Company Limited interview solution
 
-To run please run please follow these instructions:
+To run please follow these instructions:
 
 1. Clone the repository.
 2. cd into it.
